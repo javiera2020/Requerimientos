@@ -5,21 +5,28 @@
  */
 package Entidades;
 
+import Conexion.Conexion;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 /**
  *
  * @author javil
  */
 public class Encargado {
+    Conexion con;
     int Id;
     String Nombre;
     String Apellido;
     String Cargo;
     
-    public Encargado(){
-        
+    public Encargado()throws ClassNotFoundException,SQLException{
+        Conexion con = new Conexion(); 
     }
     
-    public Encargado(int Id, String Nombre, String Apellido, String Cargo){
+    public Encargado(int Id, String Nombre, String Apellido, String Cargo)throws ClassNotFoundException,SQLException{
+        Conexion con = new Conexion();
         this.Id = Id;
         this.Nombre = Nombre;
         this.Apellido = Apellido;
@@ -59,4 +66,16 @@ public class Encargado {
         this.Cargo = Cargo;
     }
     
+        public ArrayList<Encargado> obtenerEncargado() throws SQLException, ClassNotFoundException{
+   String sentencia = "select Id, encargado from encargado ";
+   
+  ArrayList <Encargado> encargado = new ArrayList();
+  ResultSet re = Conexion.consultarSQL(sentencia);
+  while(re.next()){
+      encargado.add(new Encargado(re.getInt("Id"),re.getString("Nombre"),re.getString("Apellido"),re.getString("Cargo")));
+     
+  }
+  
+      return encargado;
+  }
 }
