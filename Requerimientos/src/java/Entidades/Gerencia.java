@@ -29,14 +29,6 @@ throws ClassNotFoundException,SQLException{
     this.Descripcion = Descripcion;
 }
 
-    public Conexion getCon() {
-        return con;
-    }
-
-    public void setCon(Conexion con) {
-        this.con = con;
-    }
-
     public int getId() {
         return id;
     }
