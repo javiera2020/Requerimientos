@@ -56,17 +56,14 @@ public Login (int Id, String Usuario, String Password)throws ClassNotFoundExcept
         this.Password = Password;
     }
     
-   public ArrayList<Login> obtenerRequerimiento() throws SQLException, ClassNotFoundException{
-   String sentencia = "select Id, login from login ";
-   
-  ArrayList <Login> login = new ArrayList();
-  ResultSet re = Conexion.consultarSQL(sentencia);
-  while(re.next()){
-      login.add(new Login(re.getInt("Id"),re.getString("Usuario"),re.getString("password")));
-     
-  }
-  
-      return login;
-  }
+ public boolean iniciaSesion() throws SQLException{
+     String sentencia = "select * form Usuario where Nombre ='"+Usuario+"'"+"and Password = '"+Password+"'";
+     ResultSet re = Conexion.consultarSQL(sentencia);
+     boolean respuesta = false;
+     if(re.next()){
+         respuesta = true;
+     }
+     return respuesta;
+ }
 }
 
