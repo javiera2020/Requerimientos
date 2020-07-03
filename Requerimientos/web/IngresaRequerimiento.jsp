@@ -19,7 +19,7 @@
     <body>
         <h1>Ingresa el Requerimiento</h1>
     <center>
-        <form action="menu" method="post">
+        <form action="" method="post">
             <table>
                 <tr>
                     <th>Gerencia:</th>
